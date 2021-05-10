@@ -1,9 +1,12 @@
 [submodule "edagames-quoridor"]
 	path = edagames-quoridor
 	url = https://github.com/evbeda/edagames-quoridor
+	branch = main
 [submodule "edagames-server"]
 	path = edagames-server
 	url = https://github.com/evbeda/edagames-server
+	branch = main
 [submodule "edagames-django"]
 	path = edagames-django
 	url = https://github.com/evbeda/edagames-django
+	branch = main
