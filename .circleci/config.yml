@@ -1,5 +1,19 @@
 version: 2.1
 
+parameters:
+  trigger-commit-jobs:
+    default: true
+    type: boolean
+  update_submodule_server:
+    default: false
+    type: boolean
+  update_submodule_django:
+    default: false
+    type: boolean
+  update_submodule_quoridor:
+    default: false
+    type: boolean
+
 jobs:
   build-and-test:
     docker:
@@ -32,8 +46,50 @@ jobs:
       - run:
           name: Run Flake8 checks
           command: flake8
+  update_server:
+    docker:
+      - image: alpine/git
+    steps:
+      - run:
+          name: Checkout submodule
+          command: echo 'Update submodule server'
+  update_django:
+    docker:
+      - image: alpine/git
+    steps:
+      - run:
+          name: Checkout submodule
+          command: echo 'Update submodule django'
+  update_quoridor:
+    docker:
+      - image: alpine/git
+    steps:
+      - run:
+          name: Checkout submodule
+          command: echo 'Update submodule quoridor'
 
 workflows:
+  update_submodule_server:
+    when: << pipeline.parameters.update_submodule_server >>
+    jobs:
+      - update_server:
+          filters:
+            branches:
+              only: main
+  update_submodule_django:
+    when: << pipeline.parameters.update_submodule_django >>
+    jobs:
+      - update_django:
+          filters:
+            branches:
+              only: main
+  update_submodule_quoridor:
+    when: << pipeline.parameters.update_submodule_quoridor >>
+    jobs:
+      - update_quoridor:
+          filters:
+            branches:
+              only: main
   main:
     jobs:
       - build-and-test
