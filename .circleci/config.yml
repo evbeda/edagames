@@ -14,6 +14,27 @@ parameters:
     default: false
     type: boolean
 
+commands:
+  update_submodule:
+    description: Checkout, update, commit and push submodule
+    parameters:
+      name:
+        type: string
+        default: ""
+    steps:
+      - checkout
+      - run:
+          name: Checkout submodule
+          command: git submodule update --init --remote -- << parameters.name >>
+      - run:
+          name: Setup ssh identity
+          command: git config user.email test@test.com && git config user.name Test
+      - run:
+          name: Commit submodule update
+          command: git commit -am "Update EDAGames << parameters.name >>""
+      - run:
+          name: Push submodule update
+          command: git push origin main
 jobs:
   build-and-test:
     docker:
@@ -50,23 +71,20 @@ jobs:
     docker:
       - image: alpine/git
     steps:
-      - run:
-          name: Checkout submodule
-          command: echo 'Update submodule server'
+      - update_submodule:
+        name: "edagames-server"
   update_django:
     docker:
       - image: alpine/git
     steps:
-      - run:
-          name: Checkout submodule
-          command: echo 'Update submodule django'
+      - update_submodule:
+        name: "edagames-django"
   update_quoridor:
     docker:
       - image: alpine/git
     steps:
-      - run:
-          name: Checkout submodule
-          command: echo 'Update submodule quoridor'
+      - update_submodule:
+        name: "edagames-quoridor"
 
 workflows:
   update_submodule_server:
