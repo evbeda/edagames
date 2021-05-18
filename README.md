@@ -11,3 +11,6 @@ To clone repository and all submodules
 
 To start all components (web+server+platform)
 `docker compose up`
+
+test
+
