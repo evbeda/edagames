@@ -20,18 +20,17 @@ commands:
     parameters:
       submodule_name:
         type: string
-        default: ""
     steps:
       - checkout
       - run:
           name: Checkout submodule
-          command: git submodule update --init --remote -- << parameters.name >>
+          command: git submodule update --init --remote -- << parameters.submodule_name >>
       - run:
           name: Setup ssh identity
           command: git config user.email test@test.com && git config user.name Test
       - run:
           name: Commit submodule update
-          command: git commit -am "Update EDAGames << parameters.name >>""
+          command: git commit -am "Update EDAGames << parameters.submodule_name >>""
       - run:
           name: Push submodule update
           command: git push origin main
