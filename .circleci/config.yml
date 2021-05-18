@@ -27,10 +27,10 @@ commands:
           command: git submodule update --init --remote -- << parameters.submodule_name >>
       - run:
           name: Setup ssh identity
-          command: git config user.email test@test.com && git config user.name Test
+          command: git config user.email eda5@eventbrite.com && git config user.name EDA5
       - run:
           name: Commit submodule update
-          command: git commit -am "Update EDAGames << parameters.submodule_name >>""
+          command: git commit -am "Update EDAGames << parameters.submodule_name >>"
       - run:
           name: Push submodule update
           command: git push origin main
