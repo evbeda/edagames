@@ -1,0 +1,52 @@
+
+name: Update submodules
+
+on:
+  repository_dispatch:
+    types: [update_server, update_django, update_quoridor]
+
+jobs:
+  update_submodules:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Temporarily disable "include administrators" branch protection
+      uses: benjefferies/branch-protection-bot@master
+      if: always()
+      with:
+        access-token: ${{ secrets.ACCESS_TOKEN }}
+        branch: main
+    - name: Checkout
+      uses: actions/checkout@v2
+      with:
+        token: ${{ secrets.ACCESS_TOKEN }}
+    - name: Config git
+      run: |
+        git config user.email eda5@eventbrite.com
+        git config user.name EDA5
+    - name: Update server
+      if: github.event.action == 'update_server'
+      working-directory: ${{ env.GITHUB_WORKSPACE }}
+      run: |
+        git submodule update --init --remote -- edagames-server
+        git commit -am "Update EDAGames Server"
+    - name: Update web
+      if: github.event.action == 'update_django'
+      working-directory: ${{ env.GITHUB_WORKSPACE }}
+      run: |
+        git submodule update --init --remote -- edagames-django
+        git commit -am "Update EDAGames Web"
+    - name: Update game
+      if: github.event.action == 'update_quoridor'
+      working-directory: ${{ env.GITHUB_WORKSPACE }}
+      run: |
+        git submodule update --init --remote -- edagames-quoridor
+        git commit -am "Update EDAGames Quoridor"
+    - name: Deploy
+      working-directory: ${{ env.GITHUB_WORKSPACE }}
+      run: git push origin main
+    - name: Enable "include administrators" branch protection
+      uses: benjefferies/branch-protection-bot@master
+      if: always()
+      with:
+        access-token: ${{ secrets.ACCESS_TOKEN }}
+        branch: main
