@@ -1,39 +1,5 @@
 version: 2.1
 
-parameters:
-  trigger-commit-jobs:
-    default: true
-    type: boolean
-  update_submodule_server:
-    default: false
-    type: boolean
-  update_submodule_django:
-    default: false
-    type: boolean
-  update_submodule_quoridor:
-    default: false
-    type: boolean
-
-commands:
-  update_submodule:
-    description: Checkout, update, commit and push submodule
-    parameters:
-      submodule_name:
-        type: string
-    steps:
-      - checkout
-      - run:
-          name: Checkout submodule
-          command: git submodule update --init --remote -- << parameters.submodule_name >>
-      - run:
-          name: Setup ssh identity
-          command: git config user.email eda5@eventbrite.com && git config user.name EDA5
-      - run:
-          name: Commit submodule update
-          command: git commit -am "Update EDAGames << parameters.submodule_name >>"
-      - run:
-          name: Push submodule update
-          command: git push origin main
 jobs:
   build-and-test:
     docker:
@@ -66,47 +32,8 @@ jobs:
       - run:
           name: Run Flake8 checks
           command: flake8
-  update_server:
-    docker:
-      - image: alpine/git
-    steps:
-      - update_submodule:
-          submodule_name: "edagames-server"
-  update_django:
-    docker:
-      - image: alpine/git
-    steps:
-      - update_submodule:
-          submodule_name: "edagames-django"
-  update_quoridor:
-    docker:
-      - image: alpine/git
-    steps:
-      - update_submodule:
-          submodule_name: "edagames-quoridor"
 
 workflows:
-  update_submodule_server:
-    when: << pipeline.parameters.update_submodule_server >>
-    jobs:
-      - update_server:
-          filters:
-            branches:
-              only: main
-  update_submodule_django:
-    when: << pipeline.parameters.update_submodule_django >>
-    jobs:
-      - update_django:
-          filters:
-            branches:
-              only: main
-  update_submodule_quoridor:
-    when: << pipeline.parameters.update_submodule_quoridor >>
-    jobs:
-      - update_quoridor:
-          filters:
-            branches:
-              only: main
   main:
     jobs:
       - build-and-test
