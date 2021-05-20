@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: server
+  name: server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: server
+  template:
+    metadata:
+      labels:
+        app: server
+    spec:
+      containers:
+        - env:
+          - name: REDIS_HOST
+            valueFrom:
+               secretKeyRef:
+                 name: secret
+                 key: REDIS_HOST
+          - name: QUORIDOR_HOST_PORT
+            valueFrom:
+               secretKeyRef:
+                 name: secret
+                 key: QUORIDOR_HOST_PORT
+          - name: TOKEN_KEY
+            valueFrom:
+               secretKeyRef:
+                 name: secret
+                 key: TOKEN_KEY
+          - name: WEB_SERVER_PORT
+            valueFrom:
+               secretKeyRef:
+                 name: secret
+                 key: WEB_SERVER_PORT
+          - name: WEB_SERVER_URL
+            valueFrom:
+               secretKeyRef:
+                 name: secret
+                 key: WEB_SERVER_UR
+          image: server
+          name: server
+          ports:
+            - containerPort: 5000
