@@ -14,7 +14,7 @@ jobs:
           command: flake8
   integration-tests:
     docker:
-      - image:
+      - image: cimg/python:3.8
     steps:
       - checkout
       - run:
@@ -22,7 +22,7 @@ jobs:
           command: pip install -r requirements.txt
       - run:
           name: Start docker compose
-          command: docker compose up
+          command: docker compose up -d
       - run:
           name: Load test dataset
           command: mysql -u edagames -p ${WEB_MYSQL_PASSWORD} < integration_tests/test_data.sql
@@ -38,5 +38,9 @@ workflows:
     triggers:
       - schedule:
           cron: "0 12,17 * * 1-5"
+          filters:
+            branches:
+              only:
+                - main
     jobs:
       - integration-tests
