@@ -1,39 +1,42 @@
 version: 2.1
 
 jobs:
-  build-and-test:
+  flake8:
     docker:
       - image: circleci/python:3.8
     steps:
       - checkout
       - run:
-          name: Create test reports directory
-          command: mkdir /tmp/test-artifacts
+          name: Install dependencies-dev
+          command: pip install -r requirements-dev.txt
+      - run:
+          name: Run Flake8 checks
+          command: flake8
+  integration-tests:
+    docker:
+      - image:
+    steps:
+      - checkout
       - run:
           name: Install dependencies
           command: pip install -r requirements.txt
       - run:
-          name: Install dependencies-dev
-          command: pip install -r requirements-dev.txt
-      # - run:
-      #     name: Setup Code Climate test-reporter
-      #     command: |
-      #         # download test reporter as a static binary
-      #         curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-      #         chmod +x ./cc-test-reporter
-      #         ./cc-test-reporter before-build
-      # - run:
-      #     name: Running Tests and coverage
-      #     command: coverage run -m unittest && coverage xml && coverage report -m
-      # - run:
-      #     name: Update CodeClimate coverage report
-      #     command: |
-      #         ./cc-test-reporter after-build --exit-code $?
+          name: Start docker compose
+          command: docker compose up
       - run:
-          name: Run Flake8 checks
-          command: flake8
+          name: Load test dataset
+          command: mysql -u edagames -p ${WEB_MYSQL_PASSWORD} < integration_tests/test_data.sql
+      - run:
+          name: Start integration test
+          command: cd integration_tests && python test.py
 
 workflows:
-  main:
+  push:
     jobs:
-      - build-and-test
+      - flake8
+  integration:
+    triggers:
+      - schedule:
+          cron: "0 12,17 * * 1-5"
+    jobs:
+      - integration-tests
