@@ -25,7 +25,7 @@ jobs:
           command: docker compose up -d
       - run:
           name: Load test dataset
-          command: mysql -u edagames -p ${WEB_MYSQL_PASSWORD} < integration_tests/test_data.sql
+          command: cat integration_tests/test_data.sql | docker compose exec -i django-db /usr/bin/mysql -u ${DJANGO_DB_USER} --password=${DJANGO_DB_PASSWORD} ${DJANGO_DB_NAME}
       - run:
           name: Start integration test
           command: cd integration_tests && python test.py
