@@ -102,8 +102,9 @@ async def bot_task(ws):
 
 
 def bot_turn_gen():
-    for action, params in BOT_MOVES:
+    for action, params in BOT_MOVES.items():
         yield (action, params)
+    yield(Move, [0, 0, 0, 0])
 
 
 def bot_turn(msg):
@@ -120,9 +121,13 @@ async def test():
     bot_task_2 = asyncio.create_task(bot_task(ws_bob))
 
     # Setup Selenium driver
-    # web = webdriver.Chrome()
-    web = webdriver.Remote('http://localhost:4444', DesiredCapabilities.CHROME)
-    web.set_window_size(1280, 1024)
+    chrome_options = webdriver.ChromeOptions()
+    chrome_options.headless = True
+    web = webdriver.Remote(
+        command_executor='http://localhost:4444/wd/hub',
+        desired_capabilities=DesiredCapabilities.CHROME,
+        options=chrome_options,
+    )
 
     # Login
     web.get(f'{BASE_URL}/oauth/login/linkedin-oauth2/')

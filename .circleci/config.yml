@@ -22,7 +22,7 @@ jobs:
           command: pip install -r requirements.txt
       - run:
           name: Start docker compose
-          command: docker compose up -d
+          command: docker compose up -d -f docker-compose.yml -f compose-integration.yml
       - run:
           name: Load test dataset
           command: cat integration_tests/test_data.sql | docker compose exec -i django-db /usr/bin/mysql -u ${DJANGO_DB_USER} --password=${DJANGO_DB_PASSWORD} ${DJANGO_DB_NAME}
