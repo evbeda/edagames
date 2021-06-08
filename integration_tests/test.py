@@ -104,7 +104,8 @@ async def bot_task(ws):
 def bot_turn_gen():
     for action, params in BOT_MOVES.items():
         yield (action, params)
-    yield(Move, [0, 0, 0, 0])
+    while True:
+        yield(Move, [0, 0, 0, 0])
 
 
 def bot_turn(msg):
