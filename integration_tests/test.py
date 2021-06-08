@@ -180,6 +180,3 @@ COMMAND = {
 
 if __name__ == '__main__':
     asyncio.run(test())
-    # loop = asyncio.get_event_loop()
-    # loop.run_until_complete(test())
-    # loop.run_forever()
