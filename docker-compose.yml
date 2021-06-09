@@ -25,6 +25,7 @@ services:
         build: ./edagames-quoridor
         environment:
             - QUORIDOR_GRPC_PORT=50051
+            - REDIS_DB_INDEX=1
         depends_on:
             - redis
     server:
