@@ -26,6 +26,7 @@ services:
         environment:
             - QUORIDOR_GRPC_PORT=50051
             - REDIS_DB_INDEX=1
+            - REDIS_HOST=redis
         depends_on:
             - redis
     server:
