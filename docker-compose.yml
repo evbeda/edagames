@@ -39,11 +39,16 @@ services:
             - WEB_SERVER_PORT=8000
             - QUORIDOR_HOST_PORT=quoridor:50051
             - REDIS_HOST=redis
+            - RABBIT_HOST=rabbit
         depends_on:
             - redis
             - quoridor
+            - rabbit
+        restart: unless-stopped
     redis:
         image: redis:6.2-alpine
+    rabbit:
+        image: rabbitmq:3.8-alpine
     django-db:
         image: mysql:5.7
         ports:
