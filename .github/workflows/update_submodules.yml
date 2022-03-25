@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Temporarily disable "include administrators" branch protection
-      uses: benjefferies/branch-protection-bot@master
+      uses: benjefferies/branch-protection-bot@1.0.6
       if: always()
       with:
         access-token: ${{ secrets.ACCESS_TOKEN }}
