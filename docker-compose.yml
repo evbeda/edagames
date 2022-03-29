@@ -4,8 +4,8 @@ services:
         build: ./edagames-django
         ports:
             - "8000:8000"
-        volumes: 
-            - ${PWD}/edagames-django/db.sqlite3:/edagames-django/db.sqlite3
+        volumes:
+            - ${PWD}/edagames-django/:/edagames-django/
         environment:
             - SECRET_KEY
             - SECRET_KEY_JWT
@@ -18,7 +18,7 @@ services:
             - DJANGO_DB_NAME
             - DJANGO_DB_USER
             - DJANGO_DB_PASSWORD
-        depends_on: 
+        depends_on:
             - server
             - django-db
     quoridor:
@@ -39,16 +39,16 @@ services:
             - WEB_SERVER_PORT=8000
             - QUORIDOR_HOST_PORT=quoridor:50051
             - REDIS_HOST=redis
-            - RABBIT_HOST=rabbit
+            # - RABBIT_HOST=rabbit
         depends_on:
             - redis
             - quoridor
-            - rabbit
+            # - rabbit
         restart: unless-stopped
     redis:
         image: redis:6.2-alpine
-    rabbit:
-        image: rabbitmq:3.8-alpine
+    # rabbit:
+    #     image: rabbitmq:3.8-alpine
     django-db:
         image: mysql:5.7
         ports:
