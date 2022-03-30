@@ -18,4 +18,3 @@ spec:
         - image: redis:6.2-alpine
           name: redis
       restartPolicy: Always
-

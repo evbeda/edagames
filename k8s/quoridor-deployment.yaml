@@ -15,6 +15,6 @@ spec:
         app: quoridor
     spec:
       containers:
-        - image: quoridor
+        - image: public.ecr.aws/v1m7n2g6/edagames-quoridor
           name: quoridor
       restartPolicy: Always

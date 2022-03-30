@@ -6,7 +6,7 @@ metadata:
   name: server
 spec:
   ports:
-    - name: "5000"
+    - name: server-port
       port: 5000
       targetPort: 5000
   selector:

@@ -15,33 +15,33 @@ spec:
         app: server
     spec:
       containers:
-        - env:
-          - name: REDIS_HOST
-            valueFrom:
-               secretKeyRef:
-                 name: secret
-                 key: REDIS_HOST
-          - name: QUORIDOR_HOST_PORT
-            valueFrom:
-               secretKeyRef:
-                 name: secret
-                 key: QUORIDOR_HOST_PORT
-          - name: TOKEN_KEY
-            valueFrom:
-               secretKeyRef:
-                 name: secret
-                 key: TOKEN_KEY
-          - name: WEB_SERVER_PORT
-            valueFrom:
-               secretKeyRef:
-                 name: secret
-                 key: WEB_SERVER_PORT
-          - name: WEB_SERVER_URL
-            valueFrom:
-               secretKeyRef:
-                 name: secret
-                 key: WEB_SERVER_UR
-          image: server
+        - image: public.ecr.aws/v1m7n2g6/edagames-server
           name: server
           ports:
             - containerPort: 5000
+          env:
+            - name: REDIS_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: secret
+                  key: REDIS_HOST
+            - name: QUORIDOR_HOST_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: secret
+                  key: QUORIDOR_HOST_PORT
+            - name: TOKEN_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: secret
+                  key: TOKEN_KEY
+            - name: WEB_SERVER_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: secret
+                  key: WEB_SERVER_PORT
+            - name: WEB_SERVER_URL
+              valueFrom:
+                secretKeyRef:
+                  name: secret
+                  key: WEB_SERVER_URL
