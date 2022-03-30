@@ -45,7 +45,7 @@ jobs:
       working-directory: ${{ env.GITHUB_WORKSPACE }}
       run: git push origin main
     - name: Enable "include administrators" branch protection
-      uses: benjefferies/branch-protection-bot@master
+      uses: benjefferies/branch-protection-bot@1.0.6
       if: always()
       with:
         access-token: ${{ secrets.ACCESS_TOKEN }}
