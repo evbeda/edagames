@@ -21,18 +21,26 @@ services:
         depends_on:
             - server
             - django-db
+        stdin_open: true # debug pdb
+        tty: true # debug pdb
     quoridor:
         build: ./edagames-quoridor
+        volumes:
+            - ${PWD}/edagames-quoridor/:/edagames-quoridor/
         environment:
             - QUORIDOR_GRPC_PORT=50051
             - REDIS_DB_INDEX=1
             - REDIS_HOST=redis
         depends_on:
             - redis
+        stdin_open: true # debug pdb
+        tty: true # debug pdb
     server:
         build: ./edagames-server
         ports:
             - "5000:5000"
+        volumes:
+            - ${PWD}/edagames-server/:/app/
         environment:
             - TOKEN_KEY=${SECRET_KEY_JWT}
             - WEB_SERVER_URL=django
@@ -44,6 +52,8 @@ services:
             - redis
             - quoridor
             # - rabbit
+        stdin_open: true # debug pdb
+        tty: true # debug pdb
         restart: unless-stopped
     redis:
         image: redis:6.2-alpine
