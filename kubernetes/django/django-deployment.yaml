@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: django
+  name: django
+  namespace: edagames
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: django
+  template:
+    metadata:
+      labels:
+        app: django
+    spec:
+      containers:
+        - image: public.ecr.aws/v1m7n2g6/edagames-django
+          name: django
+          ports:
+            - containerPort: 8000
+          env:
+            - name: SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: edagames-secrets
+                  key: DJANGO_SECRET_KEY
+            - name: SECRET_KEY_JWT
+              valueFrom:
+                secretKeyRef:
+                  name: edagames-secrets
+                  key: TOKEN_KEY
+            - name: SOCIAL_AUTH_LINKEDIN_OAUTH2_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: edagames-secrets
+                  key: SOCIAL_AUTH_LINKEDIN_OAUTH2_KEY
+            - name: SOCIAL_AUTH_LINKEDIN_OAUTH2_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: edagames-secrets
+                  key: SOCIAL_AUTH_LINKEDIN_OAUTH2_SECRET
+            - name: SERVER_URL
+              value: "http://server"
+            - name: DJANGO_DB_HOST
+              value: mysql-k8s
+            - name: DJANGO_DB_PORT
+              value: 3306
+            - name: DJANGO_DB_USER
+              value: django
+            - name: DJANGO_DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: edagames-secrets
+                  key: mysql-password
+            - name: DJANGO_DB_NAME
+              value: edagames-web

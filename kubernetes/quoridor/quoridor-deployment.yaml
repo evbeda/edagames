@@ -4,6 +4,7 @@ metadata:
   labels:
     app: quoridor
   name: quoridor
+  namespace: edagames
 spec:
   replicas: 1
   selector:
@@ -17,4 +18,12 @@ spec:
       containers:
         - image: public.ecr.aws/v1m7n2g6/edagames-quoridor
           name: quoridor
-      restartPolicy: Always
+          ports:
+            - containerPort: 50051
+          env:
+            - name: REDIS_HOST
+              value: redis-k8s
+            - name: REDIS_DB_INDEX
+              value: 1
+            - name: QUORIDOR_GRPC_PORT
+              value: 50051
