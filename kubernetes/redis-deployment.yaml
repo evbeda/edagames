@@ -1,20 +1,20 @@
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  labels:
-    app: redis
-  name: redis
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: redis
-  template:
-    metadata:
-      labels:
-        app: redis
-    spec:
-      containers:
-        - image: redis:6.2-alpine
-          name: redis
-      restartPolicy: Always
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   labels:
+#     app: redis
+#   name: redis
+#   namespace: edagames
+# spec:
+#   replicas: 1
+#   selector:
+#     matchLabels:
+#       app: redis
+#   template:
+#     metadata:
+#       labels:
+#         app: redis
+#     spec:
+#       containers:
+#         - image: redis:6.2-alpine
+#           name: redis

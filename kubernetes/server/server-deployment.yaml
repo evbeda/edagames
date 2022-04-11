@@ -4,6 +4,7 @@ metadata:
   labels:
     app: server
   name: server
+  namespace: edagames
 spec:
   replicas: 1
   selector:
@@ -21,27 +22,15 @@ spec:
             - containerPort: 5000
           env:
             - name: REDIS_HOST
-              valueFrom:
-                secretKeyRef:
-                  name: secret
-                  key: REDIS_HOST
+              value: redis-k8s
             - name: QUORIDOR_HOST_PORT
-              valueFrom:
-                secretKeyRef:
-                  name: secret
-                  key: QUORIDOR_HOST_PORT
+              value: quoridor:50051
             - name: TOKEN_KEY
               valueFrom:
                 secretKeyRef:
-                  name: secret
+                  name: edagames-secrets
                   key: TOKEN_KEY
-            - name: WEB_SERVER_PORT
-              valueFrom:
-                secretKeyRef:
-                  name: secret
-                  key: WEB_SERVER_PORT
             - name: WEB_SERVER_URL
-              valueFrom:
-                secretKeyRef:
-                  name: secret
-                  key: WEB_SERVER_URL
+              value: django
+            - name: WEB_SERVER_PORT
+              value: 8000
