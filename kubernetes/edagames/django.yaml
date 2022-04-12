@@ -7,7 +7,7 @@ spec:
   dependsOn:
     - name: edagames-services
   interval: 10m0s
-  path: ./django
+  path: ./edagames/django
   prune: true
   sourceRef:
     kind: GitRepository

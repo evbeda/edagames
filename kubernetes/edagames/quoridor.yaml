@@ -7,7 +7,7 @@ spec:
   dependsOn:
     - name: edagames-services
   interval: 10m0s
-  path: ./quoridor
+  path: ./edagames/quoridor
   prune: true
   sourceRef:
     kind: GitRepository
