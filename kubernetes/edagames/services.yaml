@@ -5,7 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 10m0s
-  path: ./edagames/services
+  path: ./kubernetes/edagames/services
   prune: true
   sourceRef:
     kind: GitRepository

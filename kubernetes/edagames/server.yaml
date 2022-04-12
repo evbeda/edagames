@@ -7,7 +7,7 @@ spec:
   dependsOn:
     - name: edagames-services
   interval: 10m0s
-  path: ./edagames/server
+  path: ./kubernetes/edagames/server
   prune: true
   sourceRef:
     kind: GitRepository
