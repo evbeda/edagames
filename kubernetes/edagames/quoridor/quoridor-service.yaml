@@ -4,6 +4,7 @@ metadata:
   labels:
     app: quoridor
   name: quoridor
+  namespace: edagames
 spec:
   ports:
     - name: quoridor-port

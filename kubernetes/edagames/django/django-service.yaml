@@ -4,6 +4,7 @@ metadata:
   labels:
     app: django
   name: django
+  namespace: edagames
 spec:
   ports:
     - name: django-port
