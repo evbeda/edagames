@@ -24,6 +24,6 @@ spec:
             - name: REDIS_HOST
               value: redis-k8s
             - name: REDIS_DB_INDEX
-              value: 1
+              value: "1"
             - name: QUORIDOR_GRPC_PORT
               value: "50051"
