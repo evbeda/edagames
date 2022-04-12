@@ -26,4 +26,4 @@ spec:
             - name: REDIS_DB_INDEX
               value: 1
             - name: QUORIDOR_GRPC_PORT
-              value: 50051
+              value: "50051"
