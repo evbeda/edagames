@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: mysql-config
-  namespace: edagames
+  namespace: flux-system
 data:
   values.yaml: |
     auth:
