@@ -43,10 +43,12 @@ spec:
                   key: SOCIAL_AUTH_LINKEDIN_OAUTH2_SECRET
             - name: SERVER_URL
               value: "http://server"
+            - name: SERVER_PORT
+              value: "5000"
             - name: DJANGO_DB_HOST
               value: mysql-k8s
             - name: DJANGO_DB_PORT
-              value: 3306
+              value: "3306"
             - name: DJANGO_DB_USER
               value: django
             - name: DJANGO_DB_PASSWORD

@@ -33,4 +33,4 @@ spec:
             - name: WEB_SERVER_URL
               value: django
             - name: WEB_SERVER_PORT
-              value: 8000
+              value: "8000"
