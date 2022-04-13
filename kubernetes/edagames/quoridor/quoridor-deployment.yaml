@@ -22,7 +22,7 @@ spec:
             - containerPort: 50051
           env:
             - name: REDIS_HOST
-              value: redis-k8s
+              value: redis-k8s-master
             - name: REDIS_DB_INDEX
               value: "1"
             - name: QUORIDOR_GRPC_PORT

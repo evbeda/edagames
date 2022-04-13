@@ -22,7 +22,7 @@ spec:
             - containerPort: 5000
           env:
             - name: REDIS_HOST
-              value: redis-k8s
+              value: redis-k8s-master
             - name: QUORIDOR_HOST_PORT
               value: quoridor:50051
             - name: TOKEN_KEY
