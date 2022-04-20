@@ -6,16 +6,6 @@ metadata:
   annotations:
     eks.amazonaws.com/role-arn: arn:aws:iam::402784727777:role/aws_ack_role
 ---
-apiVersion: source.toolkit.fluxcd.io/v1beta2
-kind: HelmRepository
-metadata:
-  name: ack-apigatewayv2
-  namespace: flux-system
-spec:
-  interval: 10m0s
-  type: OCI
-  url: oci://public.ecr.aws/aws-controllers-k8s/apigatewayv2-chart
----
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
