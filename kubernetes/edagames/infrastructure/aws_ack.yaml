@@ -15,10 +15,14 @@ spec:
   releaseName: ack-apigatewayv2-controller
   chart:
     spec:
-      chart: ack-apigatewayv2-controller
+      # chart: ack-apigatewayv2-controller
+      # sourceRef:
+      #   kind: HelmRepository
+      #   name: ack-apigatewayv2
+      chart: ./kubernetes/edagames/infrastructure/apigatewayv2-chart-v0.1.0.tgz
       sourceRef:
-        kind: HelmRepository
-        name: ack-apigatewayv2
+        kind: GitRepository
+        name: flux-system
       version: '0.1.0'
   interval: 10m0s
   targetNamespace: kube-system
