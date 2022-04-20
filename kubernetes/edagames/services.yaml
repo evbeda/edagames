@@ -5,7 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   dependsOn:
-    - edagames-infra
+    - name: edagames-infra
   interval: 10m0s
   path: ./kubernetes/edagames/services
   prune: true
