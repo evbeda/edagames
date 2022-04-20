@@ -1,0 +1,28 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: HelmRepository
+metadata:
+  name: bitnami
+  namespace: flux-system
+spec:
+  interval: 10m0s
+  url: https://charts.bitnami.com/bitnami
+---
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: HelmRepository
+metadata:
+  name: ack-apigatewayv2
+  namespace: flux-system
+spec:
+  interval: 10m0s
+  type: OCI
+  url: oci://public.ecr.aws/aws-controllers-k8s/apigatewayv2-chart
+---
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: HelmRepository
+metadata:
+  name: eks
+  namespace: flux-system
+spec:
+  interval: 10m0s
+  url: https://aws.github.io/eks-charts
