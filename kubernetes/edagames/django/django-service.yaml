@@ -12,3 +12,19 @@ spec:
       targetPort: 8000
   selector:
     app: django
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: django-aws
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-type: "nlb-ip"
+    service.beta.kubernetes.io/aws-load-balancer-internal: "true"
+spec:
+  type: ClusterIP
+  selector:
+    app: author
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 8000
