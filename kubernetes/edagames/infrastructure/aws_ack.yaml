@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ServiceAccount
 metadata:
-  name: aws-ack
+  name: ack-apigatewayv2-controller
   namespace: kube-system
   annotations:
     eks.amazonaws.com/role-arn: arn:aws:iam::402784727777:role/aws_ack_role
@@ -29,6 +29,5 @@ spec:
   values:
     serviceAccount:
       create: false
-      name: aws-ack
     aws:
       region: us-east-1
