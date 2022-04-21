@@ -12,21 +12,21 @@ spec:
           "paths": {
           "/$default": {
             "x-amazon-apigateway-any-method" : {
-            "isDefaultRoute" : true,
-            "x-amazon-apigateway-integration" : {
-            "payloadFormatVersion" : "1.0",
-            "connectionId" : "2zmzlq",
-            "type" : "http_proxy",
-            "httpMethod" : "GET",
-            "uri" : "arn:aws:elasticloadbalancing:us-east-1:402784727777:listener/net/k8s-edagames-djangolb-bc4c4cdda9/211f6580f0e51ecf/eda25091855fc714",
-            "connectionType" : "VPC_LINK"
+              "isDefaultRoute" : true,
+              "x-amazon-apigateway-integration" : {
+                "payloadFormatVersion" : "1.0",
+                "connectionId" : "2zmzlq",
+                "type" : "http_proxy",
+                "httpMethod" : "GET",
+                "uri" : "arn:aws:elasticloadbalancing:us-east-1:402784727777:listener/net/k8s-edagames-djangolb-bc4c4cdda9/211f6580f0e51ecf/eda25091855fc714",
+                "connectionType" : "VPC_LINK"
               }
             }
           },
           "/client": {
               "get": {
                 "x-amazon-apigateway-integration": {
-                    "uri" : "arn:aws:elasticloadbalancing:us-east-1:402784727777:listener/net/k8s-edagames-serverlb-e7c4eba4a2/ca1e9a1977af4eaa/8ba20511eebad37f",
+                  "uri" : "arn:aws:elasticloadbalancing:us-east-1:402784727777:listener/net/k8s-edagames-serverlb-e7c4eba4a2/ca1e9a1977af4eaa/8ba20511eebad37f",
                   "httpMethod": "GET",
                   "connectionId": "2zmzlq",
                   "type": "HTTP_PROXY",
@@ -38,3 +38,12 @@ spec:
           },
           "components": {}
         }'
+---
+apiVersion: apigatewayv2.services.k8s.aws/v1alpha1
+kind: Stage
+metadata:
+  name: apiv1
+spec:
+  apiID: ks75kyhz75
+  stageName: api
+  autoDeploy: true
