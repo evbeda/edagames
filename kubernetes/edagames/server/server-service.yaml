@@ -12,3 +12,20 @@ spec:
       targetPort: 5000
   selector:
     app: server
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: server-lb
+  namespace: edagames
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-type: "nlb-ip"
+    service.beta.kubernetes.io/aws-load-balancer-internal: "true"
+spec:
+  type: ClusterIP
+  selector:
+    app: server
+  ports:
+  - protocol: TCP
+    port: 5000
+    targetPort: 5000
