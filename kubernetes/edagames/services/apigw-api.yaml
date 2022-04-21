@@ -2,6 +2,7 @@ apiVersion: apigatewayv2.services.k8s.aws/v1alpha1
 kind: API
 metadata:
   name: apitest-private-nlb
+  namespace: kube-system
 spec:
   body: '{
           "openapi": "3.0.1",
@@ -43,7 +44,8 @@ apiVersion: apigatewayv2.services.k8s.aws/v1alpha1
 kind: Stage
 metadata:
   name: apiv1
+  namespace: kube-system
 spec:
   apiID: ks75kyhz75
-  stageName: api
+  stageName: $default
   autoDeploy: true
