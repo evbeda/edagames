@@ -23,6 +23,7 @@ services:
             - django-db
         stdin_open: true # debug pdb
         tty: true # debug pdb
+        entrypoint: python manage.py runserver 0.0.0.0:8000 --settings=edagames.settings.local
     quoridor:
         build: ./edagames-quoridor
         volumes:
