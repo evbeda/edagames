@@ -34,3 +34,5 @@ spec:
               value: django
             - name: WEB_SERVER_PORT
               value: "8000"
+            - name: SERVER_CLIENT_CONNECTION_TYPE
+              value: "api_gateway"
