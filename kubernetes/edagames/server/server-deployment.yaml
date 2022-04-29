@@ -38,16 +38,16 @@ spec:
               value: "api_gateway"
             - name: AWS_ACCESS_KEY_ID
               valueFrom:
-                secretRefKey:
+                secretKeyRef:
                   name: edagames-server-ws-api
                   key: AWS_ACCESS_KEY_ID
             - name: AWS_SECRET_ACCESS_KEY
               valueFrom:
-                secretRefKey:
+                secretKeyRef:
                   name: edagames-server-ws-api
                   key: AWS_SECRET_ACCESS_KEY
             - name: AWS_REGION
               valueFrom:
-                secretRefKey:
+                secretKeyRef:
                   name: edagames-server-ws-api
                   key: AWS_DEFAULT_REGION
