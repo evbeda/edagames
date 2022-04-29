@@ -55,3 +55,8 @@ spec:
               value: "4yyity02md"
             - name: AWS_APIGATEWAY_STAGE
               value: "ws"
+            - name: AWS_APIGW_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: aws-apigw-secret
+                  key: secret
