@@ -36,3 +36,18 @@ spec:
               value: "8000"
             - name: SERVER_CLIENT_CONNECTION_TYPE
               value: "api_gateway"
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                secretRefKey:
+                  name: edagames-server-ws-api
+                  key: AWS_ACCESS_KEY_ID
+            - name: AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                secretRefKey:
+                  name: edagames-server-ws-api
+                  key: AWS_SECRET_ACCESS_KEY
+            - name: AWS_REGION
+              valueFrom:
+                secretRefKey:
+                  name: edagames-server-ws-api
+                  key: AWS_DEFAULT_REGION
