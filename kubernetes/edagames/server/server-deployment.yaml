@@ -46,7 +46,7 @@ spec:
                 secretKeyRef:
                   name: edagames-server-ws-api
                   key: AWS_SECRET_ACCESS_KEY
-            - name: AWS_REGION
+            - name: AWS_DEFAULT_REGION
               valueFrom:
                 secretKeyRef:
                   name: edagames-server-ws-api
