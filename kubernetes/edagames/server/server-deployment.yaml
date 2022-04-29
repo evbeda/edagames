@@ -54,4 +54,4 @@ spec:
             - name: AWS_APIGATEWAY_ID
               value: "4yyity02md"
             - name: AWS_APIGATEWAY_STAGE
-              value: "WS"
+              value: "ws"
