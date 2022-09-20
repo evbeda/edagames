@@ -10,10 +10,6 @@
 	path = edagames-django
 	url = git@github.com:evbeda/edagames-django.git
 	branch = main
-[submodule "edagamnes-wumpus"]
-	path = edagamnes-wumpus
-	url = git@github.com:evbeda/edagames-wumpus.git
-	branch = main
 [submodule "edagames-wumpus"]
 	path = edagames-wumpus
 	url = git@github.com:evbeda/edagames-wumpus.git
