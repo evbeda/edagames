@@ -36,6 +36,18 @@ services:
             - redis
         stdin_open: true # debug pdb
         tty: true # debug pdb
+    wumpus:
+        build: ./edagames-wumpus
+        volumes:
+            - ${PWD}/edagames-wumpus/:/edagames-wumpus/
+        environment:
+            - WUMPUS_GRPC_PORT=50052
+            - REDIS_DB_INDEX=1
+            - REDIS_HOST=redis
+        depends_on:
+            - redis
+        stdin_open: true # debug pdb
+        tty: true # debug pdb
     server:
         build: ./edagames-server
         ports:
