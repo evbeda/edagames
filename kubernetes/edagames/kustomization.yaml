@@ -7,3 +7,4 @@ resources:
   - django.yaml
   - quoridor.yaml
   - server.yaml
+  - wumpus.yaml

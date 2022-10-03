@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: wumpus
+  name: wumpus
+  namespace: edagames
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: wumpus
+  template:
+    metadata:
+      labels:
+        app: wumpus
+    spec:
+      containers:
+        - image: public.ecr.aws/v1m7n2g6/edagames-wumpus
+          name: wumpus
+          ports:
+            - containerPort: 50052
+          env:
+            - name: REDIS_HOST
+              value: redis-k8s-master
+            - name: REDIS_DB_INDEX
+              value: "1"
+            - name: WUMPUS_GRPC_PORT
+              value: "50052"
+
