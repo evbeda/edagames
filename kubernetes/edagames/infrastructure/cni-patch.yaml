@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  labels:
+    k8s-app: aws-node
+  annotations:
+    kustomize.toolkit.fluxcd.io/prune: disabled
+    kustomize.toolkit.fluxcd.io/ssa: merge
+  name: aws-node
+  namespace: kube-system
+spec:
+  selector:
+    matchLabels:
+      k8s-app: aws-node
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: aws-node
+        k8s-app: aws-node
+    spec:
+      containers:
+        - name: aws-node
+          env:
+            - name: ENABLE_PREFIX_DELEGATION
+              value: "true"
