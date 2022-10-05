@@ -14,3 +14,6 @@
 	path = edagames-wumpus
 	url = git@github.com:evbeda/edagames-wumpus.git
 	branch = main
+[submodule "edagames-react"]
+	path = edagames-react
+	url = git@github.com:evbeda/edagames-react.git
