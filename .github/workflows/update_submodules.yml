@@ -3,7 +3,7 @@ name: Update submodules
 
 on:
   repository_dispatch:
-    types: [update_server, update_django, update_quoridor]
+    types: [update_server, update_django, update_quoridor, update_wumpus]
 
 jobs:
   update_submodules:
@@ -35,12 +35,18 @@ jobs:
       run: |
         git submodule update --init --remote -- edagames-django
         git commit -am "Update EDAGames Web"
-    - name: Update game
+    - name: Update quoridor game
       if: github.event.action == 'update_quoridor'
       working-directory: ${{ env.GITHUB_WORKSPACE }}
       run: |
         git submodule update --init --remote -- edagames-quoridor
         git commit -am "Update EDAGames Quoridor"
+    - name: Update wumpus game
+      if: github.event.action == 'update_wumpus'
+      working-directory: ${{ env.GITHUB_WORKSPACE }}
+      run: |
+        git submodule update --init --remote -- edagames-wumpus
+        git commit -am "Update EDAGames Wumpus"
     - name: Deploy
       working-directory: ${{ env.GITHUB_WORKSPACE }}
       run: git push origin main
