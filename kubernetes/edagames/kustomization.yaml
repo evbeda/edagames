@@ -8,3 +8,4 @@ resources:
   - quoridor.yaml
   - server.yaml
   - wumpus.yaml
+  - react.yaml
