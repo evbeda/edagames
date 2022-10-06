@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: react
+  name: react
+  namespace: edagames
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: react
+  template:
+    metadata:
+      labels:
+        app: react
+    spec:
+      containers:
+        - image: public.ecr.aws/v1m7n2g6/edagames-react
+          name: server
+          ports:
+            - containerPort: 3000
