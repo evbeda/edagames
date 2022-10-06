@@ -17,6 +17,6 @@ spec:
     spec:
       containers:
         - image: public.ecr.aws/v1m7n2g6/edagames-react
-          name: server
+          name: react
           ports:
             - containerPort: 3000
