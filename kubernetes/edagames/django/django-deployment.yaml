@@ -45,16 +45,5 @@ spec:
               value: "http://server"
             - name: SERVER_PORT
               value: "5000"
-            - name: DJANGO_DB_HOST
-              value: mysql-k8s
-            - name: DJANGO_DB_PORT
-              value: "3306"
-            - name: DJANGO_DB_USER
-              value: django
-            - name: DJANGO_DB_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: edagames-secrets
-                  key: mysql-password
-            - name: DJANGO_DB_NAME
-              value: edagames-web
+            - name: DB_SECRET_NAME
+              value: edagames-aurora-db
