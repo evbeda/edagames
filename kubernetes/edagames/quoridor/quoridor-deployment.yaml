@@ -22,7 +22,7 @@ spec:
             - containerPort: 50051
           env:
             - name: REDIS_HOST
-              value: redis-k8s-master
+              value: elasticache-edagames.42atol.0001.use1.cache.amazonaws.com:6379
             - name: REDIS_DB_INDEX
               value: "1"
             - name: QUORIDOR_GRPC_PORT
