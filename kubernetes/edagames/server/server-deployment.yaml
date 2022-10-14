@@ -54,9 +54,9 @@ spec:
                   name: edagames-server-ws-api
                   key: AWS_DEFAULT_REGION
             - name: AWS_APIGATEWAY_ID
-              value: "4yyity02md"
+              value: "9ed2hpyjgj" #"4yyity02md"
             - name: AWS_APIGATEWAY_STAGE
-              value: "ws"
+              value: "ws-clone" #"ws"
             - name: AWS_APIGW_SECRET
               valueFrom:
                 secretKeyRef:
