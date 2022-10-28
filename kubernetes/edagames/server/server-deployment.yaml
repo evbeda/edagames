@@ -21,6 +21,8 @@ spec:
           ports:
             - containerPort: 5000
           env:
+            - name: REDIS_HOST
+              value: elasticache-edagames.42atol.0001.use1.cache.amazonaws.com
             - name: QUORIDOR_HOST_PORT
               value: quoridor:50051
             - name: WUMPUS_HOST_PORT
